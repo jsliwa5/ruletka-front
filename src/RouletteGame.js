@@ -10,13 +10,14 @@ const RouletteGame = ({initialBalance = 1000, onBalanceChange}) => {
   const [canSpin, setCanSpin] = useState(true);
 
   const handleBet = () => {
-    if (betAmount <= 0 || betAmount > balance) {
-      setMessage('Nieprawidłowa kwota zakładu.');
-      return false;
-    }
-    setMessage('');
-    setCanSpin(false); // blokuj wielokrotne zakręcenia
-    return true;
+  if (betAmount <= 0 || betAmount > balance) {
+    setMessage('Nieprawidłowa kwota zakładu.');
+    return false;
+  }
+
+  setMessage('');
+  setCanSpin(false);
+  return true;
   };
 
   const handleSpinEnd = (result) => {
@@ -32,7 +33,6 @@ const RouletteGame = ({initialBalance = 1000, onBalanceChange}) => {
       
       setBalance((prev) => {
         const newBalance = prev + payout;
-        console.log('dupa');
         if(onBalanceChange) onBalanceChange(newBalance);
         return newBalance;
       });

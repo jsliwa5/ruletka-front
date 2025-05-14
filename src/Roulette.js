@@ -25,7 +25,13 @@ const colorMap = {
 
 const degToRad = (deg) => (deg * Math.PI) / 180;
 
-const Roulette = ({ baseSize = 350, onSpinEnd, onBetResolve, currentBets = { red: 0, black: 0, green: 0 } }) => {
+const Roulette = ({
+  baseSize = 350,
+  onSpinEnd,
+  onBetResolve,
+  currentBets = { red: 0, black: 0, green: 0 },
+  spinRequest }) => {
+    
   const [isSpinning, setIsSpinning] = useState(false);
   const [result, setResult] = useState(null);
   const [rotation, setRotation] = useState(0);
@@ -37,8 +43,13 @@ const Roulette = ({ baseSize = 350, onSpinEnd, onBetResolve, currentBets = { red
   const arcSize = 360 / numOptions;
   const spinDuration = 5000;
 
-  const handleSpin = () => {
+  const handleSpin = async () => {
     if (isSpinning || numOptions === 0) return;
+
+    if (spinRequest && typeof spinRequest === 'function') {
+      const allowed = await spinRequest(); // ważne!
+      if (!allowed) return; // przerwij jeśli zakład nie przeszedł walidacji
+    }
 
     setIsSpinning(true);
     setResult(null);

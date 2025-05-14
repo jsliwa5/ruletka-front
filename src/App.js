@@ -1,6 +1,6 @@
 import React from 'react';
-import RouletteGame from './RouletteGame'; // Zakładam, że plik to RouletteGame.jsx
-import './App.css'; // jeśli używasz własnych stylów globalnych
+import RouletteGame from './RouletteGame'; 
+import './App.css'; 
 
 function App() {
   return (
@@ -10,8 +10,10 @@ function App() {
   );
 }
 
+//wywołanie api backendu, przesłanie nowego balansu
 const onBalanceChange = (balance) => {
   alert('zaktualizowano balans')
 }
+
 
 export default App;
