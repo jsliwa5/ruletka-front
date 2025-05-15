@@ -1,5 +1,5 @@
 import React from 'react';
-import RouletteGame from './RouletteGame'; 
+import RouletteGame from './components/RouletteGame'; 
 import './App.css'; 
 
 function App() {
